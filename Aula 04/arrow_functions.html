@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funções avançadas</title>
+    <script>
+        function quadrado(x){
+            return x * x;
+        }
+
+        let valor1 = 10;
+        console.log("Valor 1 ao quadrado: " + quadrado(valor1));
+
+        let quad = (x) => x * x;
+        let valor2 = 5;
+        console.log("Valor 2 ao quadrado: " + quad(valor2));
+
+        let quad2 = x => x * x;
+        let valor3 = 2;
+        console.log("Valor 3 ao quadrado: " + quad2(valor3));
+
+        let cubo = x => {return (x * x) * x};
+        let valor4 = 2;
+        console.log("Valor 4 ao cubo: " + cubo(valor4));
+
+        function multiplica(x, y = 1){
+            return x * y;
+        }
+        console.log("Multiplicado: " + multiplica(10, 5));
+
+        function cumprimento(name = "Lucas"){
+            console.log(`Olá ${name}`);
+        }
+        cumprimento("Alessandra");
+
+        function listaFrutas(...frutas){
+            console.log(frutas);
+        }
+
+        listaFrutas("Maçã", "Banana", "Abacaxi", "Pêra");
+
+        function soma(...numeros){
+            //reduce(arrow function => operação para cada posição, valor inicial)
+            return numeros.reduce((total, num) => total + num, 0);
+        }
+
+        console.log("Função soma: " + soma(1, 2, 3, 4, 5));
+
+        let globalVar = "Eu sou uma variável GLOBAL";
+
+        function testaEscopo(){
+            let localVar = "Eu sou uma variável LOCAL";
+            console.log(globalVar);
+            console.log(localVar);
+        }
+
+        testaEscopo();
+        //console.log(localVar);
+
+        function funcaoExterna(){
+            let variavelExterna = "Eu sou uma variável Externa";
+
+            function funcaoInterna(){
+                console.log(variavelExterna); //Closure
+            }
+            return funcaoInterna;
+        }
+
+        const minhaFuncaoInterna = funcaoExterna();
+        minhaFuncaoInterna();
+
+        function processaVetor(vet, operacao){
+            let aux = [];
+            for(let i = 0; i < vet.length; i++){
+                aux += operacao(vet[i]);
+            }
+            return aux;
+        }
+        processaVetor([1, 2, 3, 4, 5, 'Array', 'Melancia'], console.log);
+
+        let dobra = x => x * 2;
+        let triplica = x => x * 3;
+
+        let vetorOriginal = [1,2,3,4,5];
+        console.log(vetorOriginal);
+        console.log(processaVetor(vetorOriginal, dobra));
+        console.log(processaVetor(vetorOriginal, triplica));
+
+        console.log("------------------");
+
+        function multiplique(multiplicador){
+            return function(valor){
+                return valor * multiplicador;
+            }
+        }
+
+        const dobraValor = multiplique(2);
+        console.log(dobraValor(10));
+
+        const triplicaValor = multiplique(3);
+        console.log(triplicaValor(10));
+
+    </script>
+</head>
+<body>
+    <h1>Veja o console!</h1>
+</body>
+</html>
