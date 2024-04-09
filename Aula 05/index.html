@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>javascript assíncrono</title>
+    <script>
+        console.log("Olá mundo!");
+
+        console.log("Acessando com Promise!")
+        
+        fetch('https://reactnative.dev/movies.json')
+        .then(response => response.json())
+        .then(data => console.log(data.movies))
+        .catch(error => console.error("Falha aoconsultar API: ", error))
+        .finally(() => console.log("Conexão com a API finalizada!"));
+
+        console.log("Async/Await")
+        async function getData(){
+            try{
+                const response = await fetch('https://reactnative.dev/movies.json');
+                const data = await response.json();
+                return data.movies;
+            }catch(error){
+                console.error("Erro ao acessar API: ", error);
+            }
+        }
+
+        console.log(getData());
+    </script>
+</head>
+<body>
+    <h1>Ver o console!</h1>
+
+</body>
+</html>
